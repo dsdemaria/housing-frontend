@@ -4,6 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Dropdown from '@hackoregon/component-library/lib/Dropdown/Dropdown';
 import { fetchAffordabilityData } from '../../state/affordability/actions';
 import { fetchRentData } from '../../state/rent/actions';
 import { fetchNeighborhoods } from '../../state/neighborhoods/actions';
@@ -62,23 +63,23 @@ export function App({
       # Your income
       <input type="number" value={userIncome} onChange={event => setUserIncome(event.target.value)} />
       # Your Housing Type
-      <select value={userUnitSize} onChange={event => setUserUnitSize(event.target.value)}>
-        {UNIT_SIZES_RENT.map(size => (
-          <option value={size} key={size}>{size}</option>
-        ))}
-      </select>
+      <Dropdown
+        value={userUnitSize}
+        onChange={event => setUserUnitSize(event.value)}
+        options={UNIT_SIZES_RENT}
+      />
       # Others Housing Type
-      <select value={otherUnitSize} onChange={event => setOtherUnitSize(event.target.value)}>
-        {UNIT_SIZES_AFFORDABILITY.map(size => (
-          <option value={size} key={size}>{size}</option>
-        ))}
-      </select>
+      <Dropdown
+        value={otherUnitSize}
+        onChange={event => setOtherUnitSize(event.value)}
+        options={UNIT_SIZES_AFFORDABILITY}
+      />
       # Others Demographic
-      <select value={otherDemographic} onChange={event => setOtherDemographic(event.target.value)}>
-        {DEMOGRAPHICS.map(demo => (
-          <option value={demo} key={demo}>{demo}</option>
-        ))}
-      </select>
+      <Dropdown
+        value={otherDemographic}
+        onChange={event => setOtherDemographic(event.value)}
+        options={DEMOGRAPHICS}
+      />
       {content}
       {React.Children.toArray(children)}
     </Container>
@@ -90,11 +91,11 @@ App.defaultProps = {
   children: <div />,
   neighborhoodData: {},
   userIncome: DEFAULT_INCOME,
-  userUnitSize: UNIT_SIZES_AFFORDABILITY[0],
+  userUnitSize: UNIT_SIZES_RENT[0].value,
   setUserIncome: () => {},
   setUserUnitSize: () => {},
-  otherDemographic: DEMOGRAPHICS[0],
-  otherUnitSize: UNIT_SIZES_AFFORDABILITY[0],
+  otherDemographic: DEMOGRAPHICS[0].value,
+  otherUnitSize: UNIT_SIZES_AFFORDABILITY[0].value,
   setOtherDemographic: () => {},
   setOtherUnitSize: () => {},
   isLoading: false,

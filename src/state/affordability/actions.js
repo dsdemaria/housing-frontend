@@ -1,7 +1,7 @@
 import { actionEmitter } from '../utils';
 import { actionTypes } from './constants';
 import { api } from '../api';
-import { getOtherUnitSize, getOtherDemographic } from '../parameters/selectors';
+import { getOtherUnitSizeValue, getOtherDemographicValue } from '../parameters/selectors';
 
 export const affordabilityStart = actionEmitter(actionTypes.CALL_START);
 export const affordabilityFail = actionEmitter(actionTypes.CALL_FAIL);
@@ -16,7 +16,7 @@ export const fetchAffordabilityData = api('/affordable', {
     affordable,
   })),
   buildParams: state => ({
-    housing_size: getOtherUnitSize(state),
-    demographic: getOtherDemographic(state),
+    housing_size: getOtherUnitSizeValue(state),
+    demographic: getOtherDemographicValue(state),
   }),
 });

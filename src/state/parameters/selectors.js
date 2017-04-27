@@ -38,10 +38,20 @@ export const getUserUnitSizeValue = createSelector(
 
 export const getOtherDemographic = createSelector(
   getOtherParameters,
-  propOr(DEMOGRAPHICS[0].value, 'demographic'),
+  propOr(DEMOGRAPHICS[0], 'demographic'),
+);
+
+export const getOtherDemographicValue = createSelector(
+  getOtherDemographic,
+  propOr(DEMOGRAPHICS[0].value, 'value'),
 );
 
 export const getOtherUnitSize = createSelector(
   getOtherParameters,
-  propOr(UNIT_SIZES_AFFORDABILITY[0].value, 'unitSize'),
+  propOr(UNIT_SIZES_AFFORDABILITY[0], 'unitSize'),
+);
+
+export const getOtherUnitSizeValue = createSelector(
+  getOtherUnitSize,
+  propOr(UNIT_SIZES_AFFORDABILITY[0].value, 'value'),
 );

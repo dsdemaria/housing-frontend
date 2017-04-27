@@ -26,12 +26,18 @@ const other = (state = INITIAL_OTHER_STATE, action) => {
     case actionTypes.UPDATE_OTHER_DEMOGRAPHIC:
       return {
         ...state,
-        demographic: action.payload,
+        demographic: {
+          label: action.payload.label,
+          value: action.payload.value,
+        },
       };
     case actionTypes.UPDATE_OTHER_UNIT_SIZE:
       return {
         ...state,
-        unitSize: action.payload,
+        unitSize: {
+          label: action.payload.label,
+          value: action.payload.value,
+        },
       };
     default:
       return state;

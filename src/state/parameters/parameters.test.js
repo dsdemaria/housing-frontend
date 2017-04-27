@@ -83,7 +83,7 @@ describe('parameters actions', () => {
       payload: unitSize,
     };
 
-    expect(actions.updateUserUnitSize(unitSize)).to.eql(expectedAction);
+    expect(actions.updateUserUnit(unitSize)).to.eql(expectedAction);
   });
 
   it('should have an updateOtherUnitSize action', () => {
@@ -93,7 +93,7 @@ describe('parameters actions', () => {
       payload: unitSize,
     };
 
-    expect(actions.updateOtherUnitSize(unitSize)).to.eql(expectedAction);
+    expect(actions.updateOtherUnit(unitSize)).to.eql(expectedAction);
   });
 
   it('should have an updateOtherDemographic action', () => {

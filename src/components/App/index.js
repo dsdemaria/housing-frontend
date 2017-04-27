@@ -14,11 +14,11 @@ import {
   updateOtherUnitSize,
   updateOtherDemographic,
   updateUserIncome,
-  updateUserUnitSize,
+  updateUserUnitSizeValue,
 } from '../../state/parameters/actions';
 import {
   getUserIncome,
-  getUserUnitSize,
+  getUserUnitSizeValue,
   getOtherDemographic,
   getOtherUnitSize,
 } from '../../state/parameters/selectors';
@@ -41,9 +41,9 @@ export function App({
   isLoading,
   neighborhoodData,
   userIncome,
-  userUnitSize,
+  userUnitSizeValue,
   setUserIncome,
-  setUserUnitSize,
+  setUserUnitSizeValue,
   otherDemographic,
   otherUnitSize,
   setOtherUnitSize,
@@ -64,8 +64,8 @@ export function App({
       <input type="number" value={userIncome} onChange={event => setUserIncome(event.target.value)} />
       # Your Housing Type
       <Dropdown
-        value={userUnitSize}
-        onChange={event => setUserUnitSize(event.value)}
+        value={userUnitSizeValue}
+        onChange={event => setUserUnitSizeValue(event)}
         options={UNIT_SIZES_RENT}
       />
       # Others Housing Type
@@ -91,9 +91,9 @@ App.defaultProps = {
   children: <div />,
   neighborhoodData: {},
   userIncome: DEFAULT_INCOME,
-  userUnitSize: UNIT_SIZES_RENT[0].value,
+  userUnitSizeValue: UNIT_SIZES_RENT[0].value,
   setUserIncome: () => {},
-  setUserUnitSize: () => {},
+  setUserUnitSizeValue: () => {},
   otherDemographic: DEMOGRAPHICS[0].value,
   otherUnitSize: UNIT_SIZES_AFFORDABILITY[0].value,
   setOtherDemographic: () => {},
@@ -110,9 +110,9 @@ App.propTypes = {
   otherDemographic: React.PropTypes.string,
   otherUnitSize: React.PropTypes.string,
   userIncome: React.PropTypes.number,
-  userUnitSize: React.PropTypes.string,
+  userUnitSizeValue: React.PropTypes.string,
   setUserIncome: React.PropTypes.func,
-  setUserUnitSize: React.PropTypes.func,
+  setUserUnitSizeValue: React.PropTypes.func,
 };
 
 const mapDispatch = (dispatch) => {
@@ -140,8 +140,8 @@ const mapDispatch = (dispatch) => {
       // no call here, will filter
     },
 
-    setUserUnitSize: (size) => {
-      dispatch(updateUserUnitSize(size));
+    setUserUnitSizeValue: (size) => {
+      dispatch(updateUserUnitSizeValue(size));
       dispatch(fetchRentData());
     },
   };
@@ -151,7 +151,7 @@ const mapProps = state => ({
   neighborhoodData: getCombinedNeighborhoodsData(state),
   isLoading: isAnyCallPending(state),
   userIncome: getUserIncome(state),
-  userUnitSize: getUserUnitSize(state),
+  userUnitSizeValue: getUserUnitSizeValue(state),
   otherDemographic: getOtherDemographic(state),
   otherUnitSize: getOtherUnitSize(state),
 });

@@ -7,9 +7,9 @@ import {
   UNIT_SIZES_RENT,
 } from '../../utils/data-constants';
 
-export const getUserState = state => path(['parameters', 'user', 'value'], state);
+export const getUserState = state => path(['parameters', 'user'], state);
 
-export const getOtherState = state => path(['parameters', 'other', 'value'], state);
+export const getOtherState = state => path(['parameters', 'other'], state);
 
 export const getUserParameters = createSelector(
   getUserState,
@@ -28,7 +28,12 @@ export const getUserIncome = createSelector(
 
 export const getUserUnitSize = createSelector(
   getUserParameters,
-  propOr(UNIT_SIZES_RENT[0].value, 'unitSize'),
+  propOr(UNIT_SIZES_RENT[0], 'unitSize'),
+);
+
+export const getUserUnitSizeValue = createSelector(
+  getUserUnitSize,
+  propOr(UNIT_SIZES_RENT[0].value, 'value'),
 );
 
 export const getOtherDemographic = createSelector(

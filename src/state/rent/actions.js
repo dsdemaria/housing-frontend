@@ -1,7 +1,7 @@
 import { actionEmitter } from '../utils';
 import { actionTypes } from './constants';
 import { api } from '../api';
-import { getUserUnitSize } from '../parameters/selectors';
+import { getUserUnitSizeValue } from '../parameters/selectors';
 
 export const rentStart = actionEmitter(actionTypes.CALL_START);
 export const rentFail = actionEmitter(actionTypes.CALL_FAIL);
@@ -16,6 +16,6 @@ export const fetchRentData = api('/rent', {
     rent_amt,
   })),
   buildParams: state => ({
-    housing_size: getUserUnitSize(state),
+    housing_size: getUserUnitSizeValue(state),
   }),
 });

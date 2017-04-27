@@ -1,8 +1,8 @@
-import { DEMOGRAPHICS, UNIT_SIZES_AFFORDABILITY, DEFAULT_INCOME } from '../../utils/data-constants';
+import { DEMOGRAPHICS, UNIT_SIZES_AFFORDABILITY, UNIT_SIZES_RENT, DEFAULT_INCOME } from '../../utils/data-constants';
 
 export const INITIAL_USER_STATE = {
   income: DEFAULT_INCOME,
-  unitSize: UNIT_SIZES_AFFORDABILITY[0],
+  unitSize: UNIT_SIZES_RENT[0],
 };
 
 export const INITIAL_OTHER_STATE = {

@@ -11,7 +11,10 @@ const user = (state = INITIAL_USER_STATE, action) => {
     case actionTypes.UPDATE_USER_UNIT_SIZE:
       return {
         ...state,
-        unitSize: action.payload,
+        unitSize: {
+          label: action.payload.label,
+          value: action.payload.value,
+        },
       };
     default:
       return state;

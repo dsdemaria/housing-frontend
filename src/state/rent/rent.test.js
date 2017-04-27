@@ -42,7 +42,7 @@ describe('rent actions', () => {
   });
 
   describe('rent fetch thunk', () => {
-    const commonRentRequest = '/rent?format=json&housing_size=Overall';
+    const commonRentRequest = '/rent?format=json&housing_size=Studio';
     let store;
 
     beforeEach(() => {

@@ -83,7 +83,7 @@ describe('parameters actions', () => {
       payload: unitSize,
     };
 
-    expect(actions.updateUserUnit(unitSize)).to.eql(expectedAction);
+    expect(actions.updateUserUnitSize(unitSize)).to.eql(expectedAction);
   });
 
   it('should have an updateOtherUnitSize action', () => {
@@ -93,7 +93,7 @@ describe('parameters actions', () => {
       payload: unitSize,
     };
 
-    expect(actions.updateOtherUnit(unitSize)).to.eql(expectedAction);
+    expect(actions.updateOtherUnitSize(unitSize)).to.eql(expectedAction);
   });
 
   it('should have an updateOtherDemographic action', () => {
@@ -130,21 +130,36 @@ describe('parameters reducer', () => {
   it('should handle UPDATE_USER_UNIT_SIZE', () => {
     expect(reducer(initialState, {
       type: actionTypes.UPDATE_USER_UNIT_SIZE,
-      payload: 'Studio',
-    })).to.eql(assocPath(['user', 'unitSize'], 'Studio', initialState));
+      payload: {
+        value: 'Studio',
+        label: 'Studio',
+      },
+    })).to.eql(assocPath(['user', 'unitSize'], {
+      value: 'Studio',
+      label: 'Studio',
+    }, initialState));
 
     expect(reducer({
       user: {
-        unitSize: '1-BR',
+        unitSize: {
+          value: '1-BR',
+          label: '1-Bedroom',
+        },
         demographic: 'Senior',
       },
       other: INITIAL_OTHER_STATE,
     }, {
       type: actionTypes.UPDATE_USER_UNIT_SIZE,
-      payload: 'Studio',
+      payload: {
+        value: 'Studio',
+        label: 'Studio',
+      },
     })).to.eql({
       user: {
-        unitSize: 'Studio',
+        unitSize: {
+          value: 'Studio',
+          label: 'Studio',
+        },
         demographic: 'Senior',
       },
       other: INITIAL_OTHER_STATE,
@@ -154,21 +169,36 @@ describe('parameters reducer', () => {
   it('should handle UPDATE_OTHER_UNIT_SIZE', () => {
     expect(reducer(initialState, {
       type: actionTypes.UPDATE_OTHER_UNIT_SIZE,
-      payload: 'Studio',
-    })).to.eql(assocPath(['other', 'unitSize'], 'Studio', initialState));
+      payload: {
+        value: 'Studio',
+        label: 'Studio',
+      },
+    })).to.eql(assocPath(['other', 'unitSize'], {
+      value: 'Studio',
+      label: 'Studio',
+    }, initialState));
 
     expect(reducer({
       other: {
-        unitSize: '1-BR',
+        unitSize: {
+          value: '1-BR',
+          label: '1-Bedroom',
+        },
         income: 50000,
       },
       user: INITIAL_USER_STATE,
     }, {
       type: actionTypes.UPDATE_OTHER_UNIT_SIZE,
-      payload: 'Studio',
+      payload: {
+        value: 'Studio',
+        label: 'Studio',
+      },
     })).to.eql({
       other: {
-        unitSize: 'Studio',
+        unitSize: {
+          value: 'Studio',
+          label: 'Studio',
+        },
         income: 50000,
       },
       user: INITIAL_USER_STATE,
@@ -178,8 +208,14 @@ describe('parameters reducer', () => {
   it('should handle UPDATE_OTHER_DEMOGRAPHIC', () => {
     expect(reducer(initialState, {
       type: actionTypes.UPDATE_OTHER_DEMOGRAPHIC,
-      payload: 'Couple With Family',
-    })).to.eql(assocPath(['other', 'demographic'], 'Couple With Family', initialState));
+      payload: {
+        value: 'Couple With Family',
+        label: 'Couple With Family',
+      },
+    })).to.eql(assocPath(['other', 'demographic'], {
+      value: 'Couple With Family',
+      label: 'Couple With Family',
+    }, initialState));
   });
 
   it('should handle UPDATE_USER_INCOME', () => {
